@@ -6,5 +6,5 @@
 [github-actions-image]: https://github.com/blindfoldedsurgery/bs-nats-updater/actions/workflows/workflow.yml/badge.svg
 [github-actions-link]: https://github.com/blindfoldedsurgery/bs-nats-updater/actions/workflows/workflow.yml
 
-[codecov-image]: https://codecov.io/gh/BlindfoldedSurgery/bs-nats-updater/graph/badge.svg?token=GXR5GIAQ20
+[codecov-image]: https://codecov.io/gh/BlindfoldedSurgery/bs-nats-updater/graph/badge.svg?token=VIUGH4BJD3
 [codecov-link]: https://codecov.io/gh/BlindfoldedSurgery/bs-nats-updater
