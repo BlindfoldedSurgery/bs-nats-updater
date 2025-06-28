@@ -1,5 +1,19 @@
 # Changelog
 
+## v2.0.0 (2025-06-28)
+
+### BREAKING CHANGE
+
+- NatsConfig.from_env is non-optional by default now
+
+### Feat
+
+- add create_updater function to encapsule type trickery
+
+### Fix
+
+- use correct logger name
+
 ## v1.0.1 (2025-06-28)
 
 ### Fix
