@@ -13,6 +13,7 @@ from nats.js import JetStreamContext
 from nats.js.errors import ServiceUnavailableError
 from telegram import Bot, Update
 from telegram.error import TelegramError
+from telegram.ext import Updater
 
 _logger = logging.getLogger(__package__)
 
@@ -220,3 +221,20 @@ class NatsUpdater(contextlib.AbstractAsyncContextManager["NatsUpdater"]):
             await self.__nats_client.drain()
 
             _logger.debug("Updater.stop() is complete")
+
+
+def create_updater(
+    bot_or_token: Bot | str,
+    /,
+    config: NatsConfig,
+) -> Updater:
+    if isinstance(bot_or_token, str):
+        bot = Bot(token=bot_or_token)
+    else:
+        bot = bot_or_token
+
+    updater = NatsUpdater(
+        bot=bot,
+        nats_config=config,
+    )
+    return updater  # type: ignore[return-value]
