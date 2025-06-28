@@ -27,16 +27,16 @@ class NatsConfig:
 
     @overload
     @classmethod
-    def from_env(cls, env: Env, *, is_optional: Literal[False]) -> Self:
+    def from_env(cls, env: Env, *, is_optional: Literal[False] = False) -> Self:
         pass
 
     @overload
     @classmethod
-    def from_env(cls, env: Env, *, is_optional: Literal[True] = True) -> Self | None:
+    def from_env(cls, env: Env, *, is_optional: Literal[True]) -> Self | None:
         pass
 
     @classmethod
-    def from_env(cls, env: Env, *, is_optional: bool = True) -> Self | None:
+    def from_env(cls, env: Env, *, is_optional: bool = False) -> Self | None:
         try:
             return cls(
                 url=env.get_string("SERVER_URL", required=True),
