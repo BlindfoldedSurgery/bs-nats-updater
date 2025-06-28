@@ -1,0 +1,82 @@
+[project]
+requires-python = ">=3.13, <3.14"
+name = "bs-nats-updater"
+description = "Receive Telegram updates using NATS"
+version = "1.1.1"
+authors = [{ name = "Björn Petersen", email = "git@bjoernpetersen.net" }]
+readme = "README.md"
+classifiers = [
+    "Private :: Do Not Upload",
+    "License :: OSI Approved :: MIT License",
+]
+
+dependencies = [
+    "bs-config==1.1.1",
+    "nats-py==2.10.0",
+    "pydantic>2,<3",
+    "python-telegram-bot",
+]
+
+[project.urls]
+repository = "https://github.com/BlindfoldedSurgery/bs-nats-updater"
+
+[dependency-groups]
+dev = [
+    "commitizen ==4.8.3",
+    "coverage [toml] >=7.3.1, <8.0.0",
+    "mypy ==1.16.*",
+    "pre-commit >=4.0.0, <5.0.0",
+    "pytest >=8.0.0, <9.0.0",
+    "pytest-cov >=6.0.0, <7.0.0",
+    "ruff ==0.12.1",
+]
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "src/bs_nats_updater",
+    "CHANGELOG.md",
+    "README.md",
+    "LICENSE",
+    "pyproject.toml",
+]
+
+[tool.uv]
+publish-url = "https://pypi.bjoernpetersen.net/"
+
+[[tool.uv.index]]
+name = "internal"
+url = "https://pypi.bjoernpetersen.net"
+explicit = true
+
+[tool.uv.sources]
+bs-config = { index = "internal" }
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.commitizen]
+version_provider = "pep621"
+version_scheme = "semver"
+tag_format = "v$major.$minor.$patch"
+changelog_incremental = true
+update_changelog_on_bump = true
+
+[tool.ruff.lint]
+select = [
+    "E4",
+    "E7",
+    "E9",
+    "F",
+    "FURB",
+    "G",
+    "I001",
+    "LOG",
+    "PTH",
+    "Q",
+    "UP",
+]
+ignore = [
+    # redundant-open-modes
+    "UP015",
+]

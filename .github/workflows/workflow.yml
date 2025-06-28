@@ -1,0 +1,66 @@
+name: Workflow
+on:
+  push:
+    branches: [ main ]
+    tags:
+      - v**
+  pull_request: { }
+
+jobs:
+  required-meta:
+    permissions:
+      contents: read
+      checks: write
+      pull-requests: write
+    uses: BlindfoldedSurgery/actions-meta/.github/workflows/required.yml@v1
+
+  check-commits:
+    uses: BlindfoldedSurgery/actions-releases/.github/workflows/commitizen-check.yml@v4
+    with:
+      build-tool: uv
+      python-version: '3.13'
+
+  lint:
+    strategy:
+      matrix:
+        pyversion: [ "3.13" ]
+    uses: BlindfoldedSurgery/actions-python/.github/workflows/lint.yml@v5
+    with:
+      build-tool: uv
+      python-version: ${{ matrix.pyversion }}
+
+  test:
+    strategy:
+      matrix:
+        pyversion: [ "3.13" ]
+    uses: BlindfoldedSurgery/actions-python/.github/workflows/test.yml@v5
+    with:
+      build-tool: uv
+      python-version: ${{ matrix.pyversion }}
+      submit-coverage: ${{ matrix.pyversion == '3.13' }}
+    secrets:
+      CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+
+  bump:
+    uses: BlindfoldedSurgery/actions-releases/.github/workflows/commitizen-bump.yml@v4
+    needs:
+      - lint
+      - test
+    secrets:
+      GH_TOKEN: ${{ secrets.GH_PR_TOKEN }}
+    with:
+      build-tool: uv
+      python-version: '3.13'
+
+  publish_package:
+    uses: BlindfoldedSurgery/actions-python/.github/workflows/publish-package.yml@v5
+    needs:
+      - lint
+      - test
+    if: success() && startsWith(github.ref, 'refs/tags/v')
+    with:
+      build-tool: uv
+      python-version: '3.13'
+      pypi-username: ${{ vars.PYPI_USERNAME }}
+    secrets:
+      pypi-password: ${{ secrets.PYPI_PASSWORD }}
