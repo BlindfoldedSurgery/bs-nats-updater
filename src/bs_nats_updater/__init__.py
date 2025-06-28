@@ -14,7 +14,7 @@ from nats.js.errors import ServiceUnavailableError
 from telegram import Bot, Update
 from telegram.error import TelegramError
 
-_logger = logging.getLogger(__name__)
+_logger = logging.getLogger(__package__)
 
 
 @dataclass
