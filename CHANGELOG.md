@@ -1,5 +1,11 @@
 # Changelog
 
+## v2.0.1 (2025-06-29)
+
+### Fix
+
+- respect allowed_updates passed to start_polling
+
 ## v2.0.0 (2025-06-28)
 
 ### BREAKING CHANGE
