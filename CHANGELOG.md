@@ -1,5 +1,11 @@
 # Changelog
 
+## v2.0.2 (2025-06-29)
+
+### Fix
+
+- use simple pypi API
+
 ## v2.0.1 (2025-06-29)
 
 ### Fix
