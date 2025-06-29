@@ -45,7 +45,7 @@ publish-url = "https://pypi.bjoernpetersen.net/"
 
 [[tool.uv.index]]
 name = "internal"
-url = "https://pypi.bjoernpetersen.net"
+url = "https://pypi.bjoernpetersen.net/simple"
 explicit = true
 
 [tool.uv.sources]
