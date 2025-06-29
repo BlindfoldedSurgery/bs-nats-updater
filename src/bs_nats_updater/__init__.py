@@ -120,7 +120,10 @@ class NatsUpdater(contextlib.AbstractAsyncContextManager["NatsUpdater"]):
     ) -> None:
         await self.shutdown()
 
-    async def _ensure_webhook(self) -> None:
+    async def _ensure_webhook(
+        self,
+        allowed_updates: Sequence[str] | None = None,
+    ) -> None:
         bot = self.bot
         receiver_url = self.nats_config.receiver_url
         receiver_secret = self.nats_config.receiver_secret
@@ -129,6 +132,7 @@ class NatsUpdater(contextlib.AbstractAsyncContextManager["NatsUpdater"]):
         await bot.set_webhook(
             url=receiver_url,
             secret_token=receiver_secret,
+            allowed_updates=allowed_updates,
         )
 
     async def start_polling(
@@ -165,7 +169,10 @@ class NatsUpdater(contextlib.AbstractAsyncContextManager["NatsUpdater"]):
         json_data = json.loads(raw_data)
         return Update.de_json(json_data, bot)
 
-    async def _start_polling(self) -> None:
+    async def _start_polling(
+        self,
+        allowed_updates: Sequence[str] | None = None,
+    ) -> None:
         client = self.__nats_client
         jetstream = client.jetstream()
         sub: JetStreamContext.PullSubscription = await jetstream.pull_subscribe_bind(
@@ -176,7 +183,7 @@ class NatsUpdater(contextlib.AbstractAsyncContextManager["NatsUpdater"]):
         update_queue = self.update_queue
 
         _logger.debug("Setting up webhook config")
-        await self._ensure_webhook()
+        await self._ensure_webhook(allowed_updates)
 
         while self.running and not (client.is_draining or client.is_closed):
             try:
