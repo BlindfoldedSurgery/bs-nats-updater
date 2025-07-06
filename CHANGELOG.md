@@ -1,5 +1,11 @@
 # Changelog
 
+## v2.0.4 (2025-07-06)
+
+### Fix
+
+- use default NATS timeouts
+
 ## v2.0.3 (2025-07-06)
 
 ### Fix
