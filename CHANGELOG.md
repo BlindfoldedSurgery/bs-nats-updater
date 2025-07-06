@@ -1,5 +1,11 @@
 # Changelog
 
+## v2.0.3 (2025-07-06)
+
+### Fix
+
+- properly wait for NATS draining
+
 ## v2.0.2 (2025-06-29)
 
 ### Fix
