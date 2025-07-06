@@ -65,7 +65,6 @@ class NatsUpdater(contextlib.AbstractAsyncContextManager["NatsUpdater"]):
 
         self.__nats_client_closed = asyncio.Event()
         self.__nats_client = Client()
-        self.__nats_client.options["drain_timeout"] = 25
 
     @property
     def running(self) -> bool:
@@ -198,7 +197,7 @@ class NatsUpdater(contextlib.AbstractAsyncContextManager["NatsUpdater"]):
 
         while self.running and not (client.is_draining or client.is_closed):
             try:
-                messages = await sub.fetch(timeout=20)
+                messages = await sub.fetch()
             except TimeoutError:
                 continue
             except ServiceUnavailableError as e:
@@ -206,7 +205,7 @@ class NatsUpdater(contextlib.AbstractAsyncContextManager["NatsUpdater"]):
                     "NATS service unavailable. Retrying after a short wait...",
                     exc_info=e,
                 )
-                await asyncio.sleep(5)
+                await asyncio.sleep(2)
                 continue
             except Exception:
                 _logger.exception("Unknown error while fetching messages")
