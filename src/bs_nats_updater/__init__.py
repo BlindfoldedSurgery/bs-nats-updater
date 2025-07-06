@@ -63,6 +63,7 @@ class NatsUpdater(contextlib.AbstractAsyncContextManager["NatsUpdater"]):
         self._is_running = False
         self._is_initialized = False
 
+        self.__nats_client_closed = asyncio.Event()
         self.__nats_client = Client()
         self.__nats_client.options["drain_timeout"] = 25
 
@@ -79,12 +80,16 @@ class NatsUpdater(contextlib.AbstractAsyncContextManager["NatsUpdater"]):
         await self.__nats_client.connect(
             self.nats_config.url,
             allow_reconnect=True,
+            closed_cb=self.__on_nats_client_closed,
         )
 
         _logger.debug("Initializing bot")
         await self.bot.initialize()
 
         self._is_initialized = True
+
+    async def __on_nats_client_closed(self) -> None:
+        self.__nats_client_closed.set()
 
     async def shutdown(self) -> None:
         if self.running:
@@ -94,8 +99,14 @@ class NatsUpdater(contextlib.AbstractAsyncContextManager["NatsUpdater"]):
             _logger.debug("This Updater is already shut down. Returning.")
             return
 
+        if self.__nats_client_closed.is_set():
+            _logger.warning("NATS client is already closed. Returning.")
+            return
+
         _logger.info("Draining NATS client")
         await self.__nats_client.drain()
+        await self.__nats_client_closed.wait()
+
         _logger.info("Closing NATS client")
         await self.__nats_client.close()
 
