@@ -1,5 +1,11 @@
 # Changelog
 
+## v2.0.5 (2025-07-22)
+
+### Fix
+
+- **deps**: update dependency nats-py to v2.11.0
+
 ## v2.0.4 (2025-07-06)
 
 ### Fix
