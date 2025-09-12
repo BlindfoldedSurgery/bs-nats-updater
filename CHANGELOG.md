@@ -1,5 +1,11 @@
 # Changelog
 
+## v2.0.6 (2025-09-12)
+
+### Fix
+
+- pass on allowed_updated arg
+
 ## v2.0.5 (2025-07-22)
 
 ### Fix
