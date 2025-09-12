@@ -166,7 +166,9 @@ class NatsUpdater(contextlib.AbstractAsyncContextManager["NatsUpdater"]):
 
             try:
                 asyncio.create_task(
-                    self._start_polling(),
+                    self._start_polling(
+                        allowed_updates=allowed_updates,
+                    ),
                     name="NatsUpdater.poll",
                 )
             except Exception:
