@@ -1,5 +1,11 @@
 # Changelog
 
+## v2.0.7 (2025-09-18)
+
+### Fix
+
+- relax bs-config constraints
+
 ## v2.0.6 (2025-09-12)
 
 ### Fix
