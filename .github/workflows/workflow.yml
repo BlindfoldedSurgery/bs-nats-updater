@@ -6,6 +6,9 @@ on:
       - v**
   pull_request: { }
 
+permissions:
+  contents: read
+
 jobs:
   required-meta:
     permissions:
@@ -58,6 +61,9 @@ jobs:
       - test
     secrets:
       GH_TOKEN: ${{ secrets.GH_PR_TOKEN }}
+    permissions:
+      contents: write
+      pull-requests: write
     with:
       build-tool: uv
       python-version: '3.13'
