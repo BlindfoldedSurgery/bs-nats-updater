@@ -5,9 +5,9 @@ description = "Receive Telegram updates using NATS"
 version = "2.0.7"
 authors = [{ name = "Björn Petersen", email = "git@bjoernpetersen.net" }]
 readme = "README.md"
+license = "mit"
 classifiers = [
     "Private :: Do Not Upload",
-    "License :: OSI Approved :: MIT License",
 ]
 
 dependencies = [
