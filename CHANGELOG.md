@@ -1,5 +1,12 @@
 # Changelog
 
+## v2.1.1 (2025-10-23)
+
+### Fix
+
+- allow newer nats-py versions
+- allow bs-config 2.x
+
 ## v2.1.0 (2025-10-11)
 
 ### Feat
