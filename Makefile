@@ -3,9 +3,9 @@ check: lint test
 
 .PHONY: lint
 lint:
-	uv run ruff format src/
-	uv run ruff check --fix --show-fixes src/
-	uv run mypy src/
+	uv run ruff format
+	uv run ruff check --fix --show-fixes
+	uv run mypy src/ tests/
 
 .PHONY: pre-commit
 pre-commit:
@@ -13,4 +13,4 @@ pre-commit:
 
 .PHONY: test
 test:
-	uv run pytest src/
+	uv run pytest
