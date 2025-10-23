@@ -14,7 +14,7 @@ classifiers = [
 ]
 
 dependencies = [
-    "bs-config>=3,<4",
+    "bs-config>=2.0.0,<4",
     "nats-py>=2.11,<3",
     "pydantic>2,<3",
     "python-telegram-bot",
