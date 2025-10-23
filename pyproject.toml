@@ -21,6 +21,7 @@ dependencies = [
 ]
 
 [project.urls]
+changelog = "https://github.com/BlindfoldedSurgery/bs-nats-updater/blob/main/CHANGELOG.md"
 repository = "https://github.com/BlindfoldedSurgery/bs-nats-updater"
 
 [dependency-groups]
