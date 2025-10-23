@@ -3,9 +3,12 @@ requires-python = ">=3.13, <3.15"
 name = "bs-nats-updater"
 description = "Receive Telegram updates using NATS"
 version = "2.1.1"
-authors = [{ name = "Björn Petersen", email = "git@bjoernpetersen.net" }]
+authors = [{ name = "Björn Petersen", email = "pypi@bjoernpetersen.net" }]
 readme = "README.md"
-license = "mit"
+license = "MIT"
+license-files = [
+    "LICENSE",
+]
 classifiers = [
     "Private :: Do Not Upload",
 ]
@@ -31,13 +34,9 @@ dev = [
     "ruff ==0.14.1",
 ]
 
-[tool.hatch.build.targets.sdist]
-include = [
-    "src/bs_nats_updater",
-    "CHANGELOG.md",
-    "README.md",
-    "LICENSE",
-    "pyproject.toml",
+[tool.pytest.ini_options]
+addopts = [
+    "--import-mode=importlib",
 ]
 
 [tool.uv]
@@ -51,9 +50,14 @@ explicit = true
 [tool.uv.sources]
 bs-config = { index = "internal" }
 
+[tool.uv.build-backend]
+source-include = [
+    "CHANGELOG.md"
+]
+
 [build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
+requires = ["uv_build==0.9.*"]
+build-backend = "uv_build"
 
 [tool.commitizen]
 version_provider = "pep621"
