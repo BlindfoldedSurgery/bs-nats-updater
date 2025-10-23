@@ -2,7 +2,7 @@
 requires-python = ">=3.13, <3.15"
 name = "bs-nats-updater"
 description = "Receive Telegram updates using NATS"
-version = "2.1.1"
+version = "2.1.2"
 authors = [{ name = "Björn Petersen", email = "pypi@bjoernpetersen.net" }]
 readme = "README.md"
 license = "MIT"

@@ -1,5 +1,11 @@
 # Changelog
 
+## v2.1.2 (2025-10-23)
+
+### Fix
+
+- add changelog URL to pyproject.toml
+
 ## v2.1.1 (2025-10-23)
 
 ### Fix
