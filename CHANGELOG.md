@@ -1,5 +1,10 @@
 # Changelog
 
+## v3.0.0 (2025-10-23)
+
+
+- update bs-config to v3
+
 ## v2.1.2 (2025-10-23)
 
 ### Fix
