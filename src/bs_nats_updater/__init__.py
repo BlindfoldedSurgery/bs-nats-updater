@@ -40,11 +40,11 @@ class NatsConfig:
     def from_env(cls, env: Env, *, is_optional: bool = False) -> Self | None:
         try:
             return cls(
-                url=env.get_string("SERVER_URL", required=True),
-                consumer_name=env.get_string("CONSUMER_NAME", required=True),
-                receiver_secret=env.get_string("RECEIVER_SECRET", required=True),
-                receiver_url=env.get_string("RECEIVER_URL", required=True),
-                stream_name=env.get_string("STREAM_NAME", required=True),
+                url=env.get_string("server-url", required=True),
+                consumer_name=env.get_string("consumer-name", required=True),
+                receiver_secret=env.get_string("receiver-secret", required=True),
+                receiver_url=env.get_string("receiver-url", required=True),
+                stream_name=env.get_string("stream-name", required=True),
             )
         except ValueError as e:
             if is_optional:
