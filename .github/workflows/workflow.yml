@@ -18,7 +18,7 @@ jobs:
     uses: BlindfoldedSurgery/actions-meta/.github/workflows/required.yml@v2
 
   check-commits:
-    uses: BlindfoldedSurgery/actions-releases/.github/workflows/commitizen-check.yml@v4
+    uses: BlindfoldedSurgery/actions-releases/.github/workflows/commitizen-check.yml@v5
     with:
       build-tool: uv
       python-version: '3.14'
@@ -63,7 +63,7 @@ jobs:
       - run: echo 'All checks passed'
 
   bump:
-    uses: BlindfoldedSurgery/actions-releases/.github/workflows/commitizen-bump.yml@v4
+    uses: BlindfoldedSurgery/actions-releases/.github/workflows/commitizen-bump.yml@v5
     needs:
       - lint
       - lint-tests
