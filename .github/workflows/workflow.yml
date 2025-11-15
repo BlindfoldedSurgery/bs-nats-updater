@@ -18,6 +18,9 @@ jobs:
     uses: BlindfoldedSurgery/actions-meta/.github/workflows/required.yml@v2
 
   check-commits:
+    permissions:
+      contents: read
+      pull-requests: write
     uses: BlindfoldedSurgery/actions-releases/.github/workflows/commitizen-check.yml@v5
     with:
       build-tool: uv
