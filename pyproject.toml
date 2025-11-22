@@ -29,7 +29,7 @@ dev = [
     "commitizen==4.10.0",
     "coverage[toml]>=7, <8",
     "mypy==1.18.*",
-    "pre-commit==4.4.*",
+    "pre-commit==4.5.*",
     "pytest==9.0.*",
     "pytest-cov==7.0.0",
     "ruff ==0.14.6",
