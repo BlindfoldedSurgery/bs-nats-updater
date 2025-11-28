@@ -28,7 +28,7 @@ repository = "https://github.com/BlindfoldedSurgery/bs-nats-updater"
 dev = [
     "commitizen==4.10.0",
     "coverage[toml]>=7, <8",
-    "mypy==1.18.*",
+    "mypy==1.19.*",
     "pre-commit==4.5.*",
     "pytest==9.0.*",
     "pytest-cov==7.0.0",
